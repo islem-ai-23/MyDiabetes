@@ -1,0 +1,852 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    
+  }
+  /*la barre de titre _logo_image_search*/
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 4px solid whitesmoke;
+    padding: 10px 90px;
+    gap: 16px;
+    
+   
+}
+
+
+
+/* Styles pour le conteneur */
+.search-user-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+
+/* Styles pour l'icône utilisateur */
+.user-icon {
+  color: #005F86;
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  margin-right: -50px;
+}
+
+.user-icon:hover {
+  color: #061042;
+  transform: scale(1.1);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 10;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dropdown-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-content hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.logout-link {
+  display: inline-block;
+  width: 80%;
+  padding: 8px;
+  background-color: #dc3545;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.logout-link:hover {
+  background-color: #c82333;
+}
+
+
+
+
+
+
+/* Style for the search input field */
+.search-input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* When search input is focused, give a different border */
+.search-input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Style for the search button */
+/* Style for the search button */
+.btn1 {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for the search button */
+.btn1:hover {
+  background-color: #2980b9;
+}
+
+/* Style for the dropdown list */
+.search {
+  position: relative;
+  /* Needed for positioning the dropdown under this */
+}
+
+#searchList {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* Right below the search input */
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+
+/* Style for each item in the dropdown list */
+.search-list li {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Hover effect for dropdown items */
+.search-list li:hover {
+  background-color: #f1f1f1;
+  color: #3498db;
+}
+
+/* Style for links inside the dropdown items */
+.search-list li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Style for the submenu inside dropdown */
+.search-list .submenu {
+  display: none;
+  /* Hide the submenu initially */
+  padding-left: 20px;
+}
+
+.search-list .dropdown:hover {
+  position: absolute;
+}
+
+.search-list .dropdown:hover .submenu {
+  display: block;
+  top: 100%;
+  /* places submenu right below the parent li */
+}
+
+/* Style for active links */
+.search-list li a.active {
+  font-weight: bold;
+  color: #3498db;
+}
+
+
+
+/* Pour le défilement fluide */
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5f6974;
+      
+  }
+  
+  .logo img {
+    height: 90px;
+   
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  .clinic-name {
+    font-size: 35px;
+    font-weight: bold;
+    color: #061042;
+    
+  }
+  
+  .highlight {
+    color: #005F86;
+  }
+
+
+
+.btn4 {
+    padding: 8px 12px;
+    font-size: 19px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn4:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+@media screen and (max-width: 1024px) {
+  .search {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .search-input {
+    width: 300px; /* Réduction de la largeur */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-input {
+    width: 80%; /* Ajustement à la largeur de l'écran */
+    font-size: 18px;
+  }
+
+  .btn4 {
+    width: 50%;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search-input {
+    width: 100%; /* Pleine largeur */
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  .btn4 {
+    width: 100%;
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+}
+
+    
+
+
+
+
+
+
+/*la barre de navigateur*/
+
+
+
+
+
+nav {
+  background-color: #005F86; /* Couleur de fond de la navbar */
+  padding: 10px 0;
+  box-shadow:0 4px 4px #5f6974;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+      flex-direction: column; /* Menu en colonne sur mobile */
+      text-align: center;
+  }
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 60px;
+  display: block;
+  transition: all 0.3s;
+  font-weight: 600;
+  
+}
+
+.nav-links a:hover {
+  color: #061042; /* Changement de couleur au survol */
+  border-radius: 4px;
+}
+
+/* Sous-menu */
+.submenu {
+  list-style: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #005F86;
+  border-radius: 4px;
+
+ 
+  padding: 0;
+  min-width: 150px;
+  display: none;
+  
+}
+
+.submenu li {
+  width: 100%;
+}
+
+.submenu a {
+  color: white;
+  padding: 10px;
+  display: block;
+}
+
+
+/* Affichage du sous-menu au survol */
+.dropdown:hover .submenu {
+  display: block;
+}
+.submenu a:hover {
+  background-color: white;
+  color:#061042; /* Pour que le texte reste visible */
+}
+
+
+
+.breadcrumb {
+  background: #f4f4f4;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #005F86;
+  font-weight: bold;
+}
+
+.breadcrumb span {
+  
+  color: black;
+}
+/*Type_image*/
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f4f4f4;
+}
+  
+@media (max-width: 1024px) {
+  .hero-section {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .text-container h1 {
+      font-size: 2rem;
+  }
+}
+
+.text-container {
+  flex: 1;
+  padding: 0;
+}
+
+.text-container h1 {
+  color: #061042;
+  font-size: 3.5rem;
+  font-weight: bold;
+  padding: 70px;
+
+}
+/*Login*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+.body2,
+.body2 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.body2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  
+}
+
+.container {
+    position: relative;
+    width: 950px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+ 
+}
+
+.form-box {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-align: center;
+    padding: 40px;
+    z-index: 1;
+    transition: .6s ease-in-out 1.2s, visibility 0s 1s;
+}
+
+.container.active .form-box{
+    right: 50%;
+}
+
+.form-box.Register { /* Corrected spelling */
+    visibility: hidden;
+}
+.container.active .form-box.Register{
+    visibility: visible;
+}
+
+.form {
+    width: 100%;
+}
+
+.container h1 {
+    font-size: 36px;
+    margin: -10px 0;
+}
+
+.input-box {
+    position: relative;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 13px 50px 13px 20px;
+    background: #eee;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-box input::placeholder {
+    color: #888;
+    font-weight: 400;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #888;
+}
+
+.forgot-link {
+    margin: -15px 0 15px;
+}
+
+.forgot-link a {
+    font-size: 14.5px;
+    color: #333;
+    text-decoration: none;
+}
+
+.btn {
+    width: 100%;
+    height: 48px;
+    background: #005F86;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.container p {
+    font-size: 14.5px;
+    margin: 15px 0;
+}
+
+
+.toggle-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.toggle-box::before {
+    content: '';
+    position: absolute;
+    left: -250%;
+    width: 300%;
+    height: 100%;
+    border-radius: 150px;
+    background-color: #005F86;
+    z-index: 2;
+    transition: 1.8s ease-in-out;
+    
+}
+
+.container.active .toggle-box::before {
+    left: 50%;
+}
+
+.toggle-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transition: .6s ease-in-out;
+}
+
+.toggle-panel.toggle-left { /* Corrected class name */
+    left: 0;
+    transition-delay: 1.2s;
+}
+
+.container.active .toggle-panel.toggle-left { /* Corrected class name */
+    transition-delay: .6s;
+    left: -50%;
+}
+
+.toggle-panel.toggle-right { /* Corrected class name */
+    right: -50%;
+    transition-delay: .6s;
+}
+
+.container.active .toggle-panel.toggle-right { /* Corrected class name */
+    right: 0;
+    transition-delay: 1.2s;
+}
+
+.toggle-panel p {
+    margin-bottom: 20px;
+}
+
+.toggle-panel .btn {
+    width: 160px;
+    height: 46px;
+    background: transparent;
+    border: 2px solid #fff;
+    box-shadow: none;
+}
+/* 📱 Design mobile inspiré de la maquette */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        height: auto;
+        margin: 20px auto;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .form-box {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #fff;
+    }
+
+    .toggle-box {
+        display: none;
+    }
+
+    .form-box h1 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .form-box p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    .input-box {
+        margin: 15px 0;
+    }
+
+    .input-box input {
+        padding: 12px 40px 12px 15px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .input-box i {
+        font-size: 18px;
+        right: 15px;
+    }
+
+    .btn {
+        background: #4B7BEC;
+        font-size: 15px;
+        border-radius: 10px;
+        height: 45px;
+        margin-top: 10px;
+    }
+
+    .social-icons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        font-size: 20px;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        line-height: 42px;
+        text-align: center;
+        margin: 0 6px;
+        border: 1.5px solid #ccc;
+    }
+
+    .forgot-link {
+        text-align: right;
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+
+    .forgot-link a {
+        font-size: 13px;
+        color: #555;
+    }
+
+    .toggle-panel {
+        display: none;
+    }
+
+    .form-box.Register {
+        display: none;
+    }
+
+    .container.active .form-box.Register {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-box.login {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container.active .form-box.login {
+        display: none;
+    }
+}
+
+
+
+
+
+  
+  
+  /*footer*/
+  
+  footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 65px;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+  .footer-section h3{
+    font-weight: 800;
+    color: white;
+  }
+  .footer-section p{
+    color: white;
+    font-size: 24px;
+  }
+  .footer-section {
+    font-size: 24px; /* تكبير العناوين */
+    margin-bottom: 10px;
+  }
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    
+  }
+  .footer-section a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    line-height: 1.5;
+    
+  }
+  
+  
+  .footer-section a:hover {
+    color: #061042; /* لون عند تمرير الماوس */
+  }
+  
+  .copyright {
+    margin-top: 15px;
+    font-size: 16px;
+    color: white;
+    
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .footer-container {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+  
+    .footer-section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-section {
+      font-size: 20px;
+    }
+  
+    .footer-section ul {
+      padding: 0;
+    }
+  
+    .footer-section a {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .footer-section {
+      font-size: 18px;
+    }
+  
+    .footer-section h3 {
+      font-size: 20px;
+    }
+  
+    .footer-section a {
+      font-size: 16px;
+    }
+  
+    .copyright {
+      font-size: 14px;
+    }
+  }
+
+

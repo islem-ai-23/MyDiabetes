@@ -1,0 +1,734 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    
+    
+  }
+  /*la barre de titre _logo_image_search*/
+  header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 4px solid whitesmoke;
+    padding: 10px 90px;
+    gap: 16px;
+    
+   
+}
+
+
+/* Styles pour le conteneur */
+.search-user-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  
+}
+
+/* Styles pour l'icône utilisateur */
+.user-icon {
+  color: #005F86;
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  margin-right: -50px;
+}
+
+.user-icon:hover {
+  color: #061042;
+  transform: scale(1.1);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #fff;
+  min-width: 220px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  z-index: 10;
+  border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dropdown-content p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-content hr {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.logout-link {
+  display: inline-block;
+  width: 80%;
+  padding: 8px;
+  background-color: #dc3545;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.logout-link:hover {
+  background-color: #c82333;
+}
+
+
+
+
+
+
+/* Style for the search input field */
+.search-input {
+  padding: 10px;
+  width: 250px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+/* When search input is focused, give a different border */
+.search-input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Style for the search button */
+.btn {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for the search button */
+.btn:hover {
+  background-color: #2980b9;
+}
+
+/* Style for the dropdown list */
+.search {
+  position: relative;
+  /* Needed for positioning the dropdown under this */
+}
+
+#searchList {
+  display: none;
+  position: absolute;
+  top: 100%;
+  /* Right below the search input */
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+  transition: max-height 0.3s ease;
+}
+
+/* Style for each item in the dropdown list */
+.search-list li {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Hover effect for dropdown items */
+.search-list li:hover {
+  background-color: #f1f1f1;
+  color: #3498db;
+}
+
+/* Style for links inside the dropdown items */
+.search-list li a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Style for the submenu inside dropdown */
+.search-list .submenu {
+  display: none;
+  /* Hide the submenu initially */
+  padding-left: 20px;
+}
+
+.search-list .dropdown:hover {
+  position: absolute;
+}
+
+.search-list .dropdown:hover .submenu {
+  display: block;
+  top: 100%;
+  /* places submenu right below the parent li */
+}
+
+/* Style for active links */
+.search-list li a.active {
+  font-weight: bold;
+  color: #3498db;
+}
+/* Pour le défilement fluide */
+html {
+  scroll-behavior: smooth;
+}
+
+/*logo my diabetes*/
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #5f6974;
+      
+  }
+  
+  .logo img {
+    height: 90px;
+   
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  .clinic-name {
+    font-size: 35px;
+    font-weight: bold;
+    color: #061042;
+    
+  }
+  
+  .highlight {
+    color: #005F86;
+  }
+
+
+
+
+
+@media screen and (max-width: 1024px) {
+  .search {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .search-input {
+    width: 300px; /* Réduction de la largeur */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-input {
+    width: 80%; /* Ajustement à la largeur de l'écran */
+    font-size: 18px;
+  }
+
+  .btn {
+    width: 50%;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .search-input {
+    width: 100%; /* Pleine largeur */
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 16px;
+    padding: 6px 10px;
+  }
+}
+
+    
+
+
+
+
+
+
+/*la barre de navigateur*/
+
+nav {
+  background-color: #005F86; /* Couleur de fond de la navbar */
+  padding: 10px 0;
+  box-shadow:0 4px 4px #5f6974;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .nav-links {
+      flex-direction: column; /* Menu en colonne sur mobile */
+      text-align: center;
+  }
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 60px;
+  display: block;
+  transition: all 0.3s;
+  font-weight: 600;
+  
+}
+
+.nav-links a:hover {
+  color: #061042; /* Changement de couleur au survol */
+  border-radius: 4px;
+}
+
+/* Sous-menu */
+.submenu {
+  list-style: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #005F86;
+  border-radius: 4px;
+
+  padding: 0;
+  min-width: 150px;
+  display: none;
+  
+}
+
+
+.submenu li {
+  width: 100%;
+}
+
+.submenu a {
+  color: white;
+  padding: 10px;
+  display: block;
+}
+
+
+/* Affichage du sous-menu au survol */
+.dropdown:hover .submenu {
+  display: block;
+  z-index: 1000;
+ 
+}
+
+.submenu a:hover {
+  background-color: white;
+  color:#061042; /* Pour que le texte reste visible */
+}
+
+
+.breadcrumb {
+  background: #f4f4f4;
+  padding: 12px 20px;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: #005F86;
+  font-weight: bold;
+}
+
+.breadcrumb span {
+  
+  color: black;
+}
+
+/*Type_image*/
+.hero-banner {
+  width: 100%;
+  height: 400px;
+  background-image: url('diabetes-teste.jpg'); 
+  background-size: cover;
+  background-position: center;
+  animation: moveBackground 10s infinite linear;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@keyframes moveBackground {
+  0% { background-position: center; }
+  50% { background-position: center top; }
+  100% { background-position: center; }
+}
+
+.hero-overlay {
+  background-color: rgba(6, 16, 66, 0.6); 
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 48px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px #000;
+}
+
+
+
+
+ /* Conteneur principal */
+ .container {
+  max-width: 1000px;
+  max-height: 2800px;
+  width: 100%;
+  height: 100%;
+  margin: 50px auto;
+  padding: 130px 20px;
+  position: relative;
+  background-color: #005F86 ;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  overflow: auto; 
+}
+.question,
+.first-question {
+  min-height: 100px;
+  margin-bottom: 40px;
+}
+
+.btn-group,
+.first-group {
+  min-height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+
+/* Bouton de retour */
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  font-size: 15px;
+  background: #005F86;
+  border: 2px solid white;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: none;
+  z-index: 9999;  
+}
+
+
+.back-btn:hover {
+  background-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* Titre de la première question */
+.test-title {
+  font-size: 52px;
+  line-height: 1.3;
+  color: white;
+}
+
+/* Question affichée */
+.question {
+  font-size: 40px;
+  margin-bottom: 40px;
+  line-height: 1.4;
+  color: white;
+  font-weight: 700;
+  
+}
+
+/* Style spécifique à la première question */
+.first-title {
+  color: white;
+  font-size: 40px;
+  margin-bottom: 50px;
+  margin-top: -50px;
+  text-align: center;
+}
+
+.first-question {
+  font-size: 52px;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.first-group {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.first-btn {
+  padding: 20px 40px;
+  font-size: 1.2em;
+  background-color: #1a1f71;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.first-btn:hover {
+  background-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+
+
+
+/* Boutons et champs */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.btn-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.btn8 {
+  padding: 18px;
+  font-size: 20px;
+  font-weight: bold;
+  border: 2px solid white;
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 250px;
+}
+
+.btn8:hover {
+  background-color: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+.btn8:active {
+  transform: translateY(0);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 10px;
+}
+
+.input-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.input {
+  padding: 18px;
+  font-size: 20px;
+  width: 350px;
+  border: 2px solid white;
+  background-color: white;
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+
+/*Questions*/
+.question-container{
+  font-size: 22px;
+  color: #f4f4f4;
+}
+.question-container h2{
+  color: rgb(234, 234, 47);
+  font-size: 48px;
+  margin-top: -40px;
+
+}
+.question-container p strong{
+  color:rgb(234, 234, 47) ;
+}
+
+
+
+
+
+  
+  /*footer*/
+  
+  footer {
+    background: #003366;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 65px;
+  }
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+  .footer-section h3{
+    font-weight: 800;
+    color: white;
+  }
+  .footer-section p{
+    color: white;
+    font-size: 24px;
+  }
+  .footer-section {
+    font-size: 24px; /* تكبير العناوين */
+    margin-bottom: 10px;
+  }
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    
+  }
+  .footer-section a {
+    margin: 0 10px;
+    color: white;
+    text-decoration: none;
+    line-height: 1.5;
+    
+  }
+  
+  
+  .footer-section a:hover {
+    color: #061042; /* لون عند تمرير الماوس */
+  }
+  
+  .copyright {
+    margin-top: 15px;
+    font-size: 16px;
+    color: white;
+    
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .footer-container {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+  
+    .footer-section {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .footer-section {
+      font-size: 20px;
+    }
+  
+    .footer-section ul {
+      padding: 0;
+    }
+  
+    .footer-section a {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .footer-section {
+      font-size: 18px;
+    }
+  
+    .footer-section h3 {
+      font-size: 20px;
+    }
+  
+    .footer-section a {
+      font-size: 16px;
+    }
+  
+    .copyright {
+      font-size: 14px;
+    }
+  }
+
+
+
+  

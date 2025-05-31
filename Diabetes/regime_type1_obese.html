@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Diet</title>
+    <link rel="stylesheet" href="Test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    
+</head>
+<body>
+    <!--la barre de titre et search-->
+
+    <header>
+        <div class="logo">
+            <a href="Home.html"><img src="logo.png" alt="XtraClinic Logo"></a>
+            <a href="Home.html"><span class="clinic-name">My<span class="highlight">Diabeties</span></span></a>
+        </div>
+        <div class="search-user-container">
+            <div class="search">
+                <input class="search-input" type="search" placeholder="Rechercher...">
+                <button class="btn">Search</button>
+            </div>
+       
+          <a href="Home.html#login-section" id="user-icon" class="user-icon">
+          <i class="fas fa-user-circle"></i> </a>
+        </div>
+    
+      
+    </header>
+    <!--la baree de navigateur-->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="Home.html" class="active">Home</a></li>
+            <li class="dropdown">
+                <a href="diabete.html">About Diabetes <i class="fas fa-caret-down"></i></a>
+                <ul class="submenu">
+                    <li><a href="type1.html">Type 1</a></li>
+                    <li><a href="type2.html">Type 2</a></li>
+                    <li><a href="type3.html">gestational diabetes</a></li>
+                    <li><a href="warning-signs.html">warning signs and symptoms</a></li>
+                    <li><a href="prevention.html">diabetes prevention</a></li>
+                    <li><a href="Complications.html">diabetes complications</a></li>
+                    
+        
+                </ul>
+            </li>
+            <li><a href="Test.html">regime</a></li>
+            <li><a href="FAQ.html">FAQ's</a></li>
+            <li><a href="Contacte.html">Contact</a></li>
+        </ul>
+    </nav>
+    <!--la barre de home_about diabete-->
+    <div class="breadcrumb-container"></div>
+    <div class="breadcrumb">
+        <a href="Home.html">Home</a> &gt; <span>Test diet</span>
+    </div>
+    <!--Div de titre aboute diabete et l'image-->
+    <section class="hero-banner">
+        <div class="hero-overlay">
+          <h1 class="hero-title">Diabetes Test Diet</h1>
+        </div>
+      </section>
+
+
+    <!--teste-->
+
+    <button class="back-btn" onclick="prevQuestion()"><i class="fa-solid fa-arrow-left" style="font-size: 20px;"></i></button>
+    <div class="container">
+        <div id="question-container"></div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </div>
+
+    <script>
+       const questions = [
+  {
+    title: "Our 60-Second To Test Your Diet",
+    text: "Are you taking this test for yourself, or for a loved one?",
+    options: ["FOR MYSELF", "FOR SOMEONE ELSE"],
+    isFirstQuestion: true
+  },
+  {
+    text: "Do you have diabetes or are you at risk?",
+    options: ["TYPE 1 DIABETES", "TYPE 2 DIABETES"],
+    pairedButtons: true
+  },
+  {
+    text: "What is your weight category?",
+    options: [, "NORMAL WEIGHT", "OVERWEIGHT", "OBESE"],
+    pairedButtons: true
+  }
+];
+
+let currentQuestionIndex = 0;
+        let answers = {};
+      
+        function loadQuestion() {
+          const container = document.getElementById("question-container");
+          const backBtn = document.querySelector(".back-btn");
+          const question = questions[currentQuestionIndex];
+      
+          backBtn.style.display = currentQuestionIndex === 0 ? "none" : "block";
+      
+          if (question.inputFields) {
+            container.innerHTML = `
+              <div class="question">${question.text}</div>
+              <div class="input-group">
+                <div class="input-row">
+                  <input type="number" id="${question.inputFields[0]}" class="input" placeholder="Weight (kg)">
+                  <input type="number" id="${question.inputFields[1]}" class="input" placeholder="Height (cm)">
+                </div>
+                <button class="btn8" onclick="nextQuestion()">NEXT</button>
+              </div>
+            `;
+          } else {
+            let html = "";
+      
+            if (question.isFirstQuestion) {
+              html += <div class="test-title first-title">${question.title}</div>;
+              html += <div class="first-question">${question.text}</div>;
+              html += `<div class="btn-group first-group">
+                ${question.options.map(option => <button class="btn8 first-btn" onclick="nextQuestion('${option}')">${option}</button>).join("")}
+              </div>`;
+            } else {
+              if (question.title) {
+                html += <div class="test-title">${question.title}</div>;
+              }
+      
+              html += <div class="question">${question.text}</div>;
+      
+              if (question.pairedButtons) {
+                html += <div class="btn-group">;
+                for (let i = 0; i < question.options.length; i += 2) {
+                  html += <div class="btn-row">;
+                  html += <button class="btn8" onclick="nextQuestion('${question.options[i]}')">${question.options[i]}</button>;
+                  if (i + 1 < question.options.length) {
+                    html += <button class="btn8" onclick="nextQuestion('${question.options[i + 1]}')">${question.options[i + 1]}</button>;
+                  }
+                  html += </div>;
+                }
+                html += </div>;
+              } else {
+                html += `<div class="btn-group">
+                  ${question.options.map(option => <button class="btn8" onclick="nextQuestion('${option}')">${option}</button>).join("")}
+                </div>`;
+              }
+            }
+      
+            html += <div id="extra-options"></div>; // sous-question ici
+      
+            container.innerHTML = html;
+          }
+      
+          updateProgress();
+        }
+      
+        function prevQuestion() {
+          if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            loadQuestion();
+          }
+        }
+      
+        function nextQuestion(answer) {
+          const currentQuestion = questions[currentQuestionIndex];
+      
+          // Afficher la sous-question si "TYPE 2 DIABETES" est cliqué
+          if (currentQuestion.text === "Do you have diabetes or are you at risk?" && answer === "TYPE 2 DIABETES") {
+            const extraDiv = document.getElementById("extra-options");
+            extraDiv.innerHTML = `
+              <div class="question">Do you have hypertension?</div>
+              <div class="btn-group">
+                <button class="btn8" onclick="handleHypertension('HYPERTENSION')">HYPERTENSION</button>
+                <button class="btn8" onclick="handleHypertension('NO HYPERTENSION')">NO HYPERTENSION</button>
+              </div>
+            `;
+            answers[currentQuestion.text] = answer;
+            return;
+          }
+      
+          if (currentQuestion.inputFields) {
+            const weight = document.getElementById("weight").value;
+            const height = document.getElementById("height").value;
+      
+            if (!weight || !height) {
+              alert("Please enter both values.");
+              return;
+
+Si Ssou, [02/05/2025 14:52]
+}
+      
+            const heightInMeters = height / 100;
+            const imc = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+      
+            answers["Poids"] = imc < 18.5 ? "Sous-poids" : imc < 25 ? "Normal" : imc < 30 ? "Surpoids" : "Obèse";
+            answers["IMC"] = imc;
+          } else {
+            answers[currentQuestion.text] = answer;
+          }
+      
+          if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            loadQuestion();
+          } else {
+            showResults();
+          }
+        }
+      
+        function handleHypertension(value) {
+          answers["Hypertension"] = value;
+          currentQuestionIndex++;
+          loadQuestion();
+        }
+      
+        function updateProgress() {
+          const progress = document.getElementById("progress");
+          const percentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+          progress.style.width = percentage + "%";
+        }
+      
+        function showResults() {
+          let resultText = "<h2>Test Completed!</h2><p>Your answers:</p><ul>";
+          for (let key in answers) {
+            resultText += <li><strong>${key}:</strong> ${answers[key]}</li>;
+          }
+          resultText += "</ul>";
+      
+          if (answers["IMC"]) {
+            let imcMessage = "";
+            const imc = parseFloat(answers["IMC"]);
+            if (imc < 18.5) {
+              imcMessage = "You are underweight. Consider a balanced diet.";
+            } else if (imc < 25) {
+              imcMessage = "You have a normal weight. Keep it up!";
+            } else if (imc < 30) {
+              imcMessage = "You are overweight. A healthy diet may help.";
+            } else {
+              imcMessage = "You are in the obesity range. Consider a professional consultation.";
+            }
+            resultText += <p><strong>IMC Analysis:</strong> ${imcMessage}</p>;
+          }
+      
+          document.getElementById("question-container").innerHTML = resultText;
+          document.querySelector(".back-btn").style.display = "none";
+        }
+      
+        loadQuestion();
+      </script>
+
+
+ <!--Footer-->   
+ <footer>
+    <div class="footer-container">
+    <div class="footer-section">
+        <h3>Contact</h3>
+        <ul>
+            <li><a href="mailto:islemdiaf633@gmail.com">Email : islemdiaf633@gmail.com</a></li>
+            <li><a href="tel:+213672925950">Phone : +213 672925950</a></li>
+            <li>Adress: annaba23</li>
+            </ul>
+    </div>
+    <div class="footer-section">
+        <h3>Quik link</h3>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="diabete.html">About diabets</a></li>
+            <li><a href="Test.html">Regime</a></li>
+            <li><a href="FAQ.html">FAQ'S</a></li>
+            <li><a href="Contacte.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h3>follow us</h3>
+        <a href="https://www.facebook.com"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="https://twitter.com"><i class="fab fa-twitter fa-2x"></i></a>
+        <a href="https://www.instagram.com"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://www.linkedin.com"><i class="fab fa-linkedin fa-2x"></i></a>
+    </div>
+    </div>
+    <p class="copyright">© 2025 Diabète Info - Tous droits réservés</p>
+    </footer>
+    </div>
+
+
+
+
+</body>
+</html>
